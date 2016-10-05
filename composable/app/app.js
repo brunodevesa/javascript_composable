@@ -1,17 +1,19 @@
 $(function () {
 // your jquery goes here
 
-    // enum in js. Operations available:
+    // enum in js: operations available:
     var operations = {
         increment: increment,
         decrement: decrement,
         reset: reset
+        // need more operations ?
+        // no problem : i name the here and i make its implementation logic in a proper method
     };
 
     // sexy way of calling (abstraction things).
     $('#btn_left').click(function () {
-        var dom_element = 'content';
-        changeDOMValue(dom_element,operations.increment);
+        var DOM_element = 'content';
+        changeDOMValue(DOM_element,operations.increment); //('increment', 'subtract' or whatever).
 
         var dom_element = 'content2';
         changeDOMValue(dom_element,operations.decrement);
@@ -35,8 +37,6 @@ $(function () {
     });
 
 
-
-
     // no global variables here
     function changeDOMValue(dom_element, action) {
 
@@ -44,7 +44,7 @@ $(function () {
         var value = Number($('#'+dom_element+'').text());
 
         // calling the composable function.
-        // Only changes the operation called ('add' to 'subtract' or whatever).
+        // ready for any changes in the operation to perform (abstraction 'action' is called)
         var res = changeValue(value, action);
 
         // put the value into the DOM element
@@ -58,7 +58,9 @@ $(function () {
     }
 
 
-    // easy testable. never gonna need to change
+    // in here i just concern the functions logic - what i want the method do
+    // easy testable. never gonna need to change,
+    // but if need it, i just have to change right here. the rest keeps intact.
     function increment(value) {
         return value + 1;
     }
